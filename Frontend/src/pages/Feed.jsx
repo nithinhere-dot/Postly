@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
+import axios from 'axios'
 
 function Feed() {
   const [posts,setPosts]=useState([])
+
+  useEffect(()=>{
+    axios.get("http://localhost:3000/posts")
+    .then((res)=>{
+      setPosts(res.data.posts)
+      }
+    )
+  },[])
   return (
     <section>
       {
